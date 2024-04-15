@@ -1,10 +1,11 @@
+from datetime import datetime
 from pathlib import Path
 
+from git.repo import Repo
+
+
 N = 100
+repo = Repo(Path(__file__).parent.absolute())
 
-with Path("text.txt").open() as file:
-    for _ in range(N):
-        file.write("i")
-
-
-    file.truncate(0)
+for i in range(N):
+    repo.index.commit(f"Commit: {datetime.now()} {i}")
